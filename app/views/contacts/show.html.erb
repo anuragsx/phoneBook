@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-heading ">
+        <i class="fa fa-address-book"></i> Show View Contact Name
+              </div>
+      <div class=panel-body>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @contact.name %>
+      </p>
+
+      <p>
+        <strong>Address(es):</strong>
+        <ul>
+        <% if @contact.postal_addresses.present? %>
+          <% @contact.postal_addresses.each_with_index do |add, index| %>
+            <li>Address <%= index + 1 %> : <%= add.address %></li>
+          <%end%>
+        <%end%>
+        </ul>
+      </p>
+
+      <p>
+        <strong>Phone Number(s):</strong>
+        <ul>
+        <% if @contact.phone_numbers.present? %>
+          <% @contact.phone_numbers.each_with_index do |phone, index| %>
+            <li>Phone Number <%= index + 1 %> : <%= phone.phone_no %></li>
+          <%end%>
+        <%end%>
+        </ul>
+      </p>
+
+      <%= link_to 'Back', contacts_path %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <%# render 'ip_subnets/ips_left' %>
+      </div>
+      <div class="col-lg-6">
+        <%# render 'data_gateway_uids/uids_left' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <%#= render(:partial => 'task_status') %>
+  </div>
+</div>

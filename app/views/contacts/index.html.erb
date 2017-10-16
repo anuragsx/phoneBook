@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-heading ">
+        <i class="fa fa-address-book"></i> Contact Names
+      </div>
+      <div class=panel-body>
+        <table class="table">
+          <thead class="table table-striped">
+            <tr>
+              <th>#</th>
+              <th>Names</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% if @contacts.present? %>
+            <% @contacts.each_with_index do |contact, index| %>
+              <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= contact.name %></td>
+                <td>
+                  <%= link_to '<button type="button" class="btn btn-primary">Show</button>'.html_safe, contact_path(contact) %>
+                  &nbsp; 
+                  <%= link_to '<button type="button" class="btn btn-primary">Edit</button>'.html_safe, edit_contact_path(contact)%>
+                  &nbsp; 
+                  <%= link_to '<button type="button" class="btn btn-danger">Delete</button>'.html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <%end%>
+          <%end%>
+        </table>
+        <%= link_to 'New Contact', new_contact_path %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <%# render 'ip_subnets/ips_left' %>
+      </div>
+      <div class="col-lg-6">
+        <%# render 'data_gateway_uids/uids_left' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <%#= render(:partial => 'task_status') %>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-heading ">
+        <i class="fa fa-address-book"></i> New Contact Name
+      </div>
+      <div class=panel-body>
+        <%= form_for(contact) do |f| %>
+          <% if contact.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+              <ul>
+              <% contact.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <br />
+          <div class="form-group">
+            <% i = 1 %>
+            <%= f.fields_for :phone_numbers, @contact.phone_numbers do |phone| %>
+              <%= phone.label :phone_no do %>
+                Phone Number <%= i %>
+              <% end %>
+              <div class="field">
+                <%= phone.text_field :phone_no, :class => 'form-control' %>
+              </div>
+              <% i = i + 1 %>
+            <% end %>
+
+          </div>   
+
+          <div class="form-group">
+            <% pai = 1 %>
+            <%= f.fields_for :postal_addresses, @contact.postal_addresses do |address| %>
+              <%= address.label :address do %>
+                Postal Address <%= pai %>
+              <% end %>
+              <div class="field">
+                <%= address.text_area :address, :class => 'form-control' %>
+              </div>
+              <% pai = pai + 1 %>
+            <% end %>
+          </div> 
+
+          <div class="actions">
+            <%= f.submit "Submit", class: "btn btn-default"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <%# render 'ip_subnets/ips_left' %>
+      </div>
+      <div class="col-lg-6">
+        <%# render 'data_gateway_uids/uids_left' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <%#= render(:partial => 'task_status') %>
+  </div>
+</div>
